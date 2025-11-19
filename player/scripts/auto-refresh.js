@@ -15,8 +15,8 @@ const scheduleNextCheck = (delay = nextDelay) => {
   nextDelay = clamped;
   clearTimeout(timerId);
   timerId = setTimeout(checkForUpdate, clamped);
-  };
- 
+};
+
 const deriveIntervalFromHeaders = (headers) => {
   const refreshHeader = headers.get('x-menu-refresh') || headers.get('x-refresh-interval');
   if (refreshHeader) {
@@ -77,7 +77,7 @@ const checkForUpdate = async () => {
     console.warn('Auto-refresh check failed', error);
     scheduleNextCheck(Math.min(MAX_INTERVAL, nextDelay * 1.5));
   }
- };
+};
 
 if (trackedConfigUrl) {
   scheduleNextCheck(DEFAULT_INTERVAL);
