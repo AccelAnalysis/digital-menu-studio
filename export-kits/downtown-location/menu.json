@@ -1,0 +1,45 @@
+{
+  "id": "downtown-2025-11",
+  "name": "Downtown Bistro Lunch",
+  "theme": "fast-casual",
+  "createdAt": "2025-11-19T09:51:00Z",
+  "updatedAt": "2025-11-19T09:51:00Z",
+  "groups": [
+    {
+      "id": "g1",
+      "name": "Lunch",
+      "isActive": true,
+      "slides": [
+        {
+          "id": "s1",
+          "name": "Main Dishes",
+          "durationSeconds": 10,
+          "background": {
+            "type": "image",
+            "src": "assets/images/burger.jpg"
+          },
+          "tiles": [
+            {
+              "id": "t1",
+              "type": "item",
+              "position": { "x": 0.1, "y": 0.1, "width": 0.4, "height": 0.2 },
+              "content": {
+                "name": "Classic Burger",
+                "description": "Angus beef, cheddar, brioche bun",
+                "price": 12.99,
+                "badges": ["Spicy", "Gluten-Free Option"]
+              },
+              "style": { "fontSize": 24, "color": "#fff", "background": "#222" }
+            },
+            {
+              "id": "t2",
+              "type": "image",
+              "position": { "x": 0.6, "y": 0.1, "width": 0.3, "height": 0.5 },
+              "content": { "src": "assets/images/logo.png" }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

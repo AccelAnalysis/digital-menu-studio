@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Downtown Bistro Menu</title>
+  <link rel="stylesheet" href="player-base.css">
+  <link rel="stylesheet" href="player-themes.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div id="slides"></div>
+  <script src="main-player.js"></script>
+  <script>
+    // Load config from menu.json or URL param
+    const urlParams = new URLSearchParams(window.location.search);
+    const configUrl = urlParams.get('config') || './menu.json';
+    fetch(configUrl)
+      .then(res => res.json())
+      .then(config => window.startPlayer(config))
+      .catch(() => console.error('Config load failed'));
+  </script>
+</body>
+</html>

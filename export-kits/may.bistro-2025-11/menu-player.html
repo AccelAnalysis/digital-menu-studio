@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Bistro Menu</title>
+  <style>
+    /* Minified player styles (~10 KB) */
+    body { margin: 0; background: #111; font-family: system-ui; color: #fff; }
+    .slide { display: none; position: absolute; inset: 0; }
+    .slide.active { display: block; animation: fade 0.5s; }
+    .tile { position: absolute; }
+    .tile.item { background: #222; padding: 1rem; border-radius: 8px; }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+    /* Theme-specific overrides */
+    .theme-fast-casual { --primary: #4c9; --font: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="theme-fast-casual">
+  <div id="slides"></div>
+  <script>
+    /* Minified player logic (~15 KB) */
+    const config = {
+      groups: [{ id: 'g1', name: 'Lunch', slides: [
+        {
+          id: 's1', duration: 10, background: { type: 'image', src: 'data:image/jpeg;base64,/9j/4AAQSkZJRg...' },
+          tiles: [
+            { id: 't1', type: 'item', position: { x: 0.1, y: 0.1, w: 0.4, h: 0.2 }, content: { name: 'Burger', price: 12.99, badges: ['Spicy'] } }
+          ]
+        }
+      ]}]
+    };
+    function render() {
+      const root = document.getElementById('slides');
+      config.groups[0].slides.forEach(s => {
+        const slide = document.createElement('div');
+        slide.className = 'slide';
+        slide.style.background = s.background.src ? `url(${s.background.src})` : s.background.color;
+        s.tiles.forEach(t => {
+          const tile = document.createElement('div');
+          tile.className = `tile ${t.type}`;
+          tile.style.left = `${t.position.x * 100}%`;
+          tile.innerHTML = `<h2>${t.content.name}</h2><p>$${t.content.price}</p>`;
+          slide.appendChild(tile);
+        });
+        root.appendChild(slide);
+      });
+      let i = 0;
+      setInterval(() => {
+        document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+        root.children[i].classList.add('active');
+        i = (i + 1) % root.children.length;
+      }, 10000);
+    }
+    render();
+  </script>
+</body>
+</html>
